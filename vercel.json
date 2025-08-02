@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "client/**/*",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "functions": {
+    "api/messenger.js": {
+      "maxDuration": 30
+    },
+    "api/bot-responses.js": {
+      "maxDuration": 10
+    },
+    "api/conversations.js": {
+      "maxDuration": 10
+    },
+    "api/facebook-settings.js": {
+      "maxDuration": 10
+    },
+    "api/stats.js": {
+      "maxDuration": 10
+    }
+  }
+}
